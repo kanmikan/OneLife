@@ -3876,10 +3876,12 @@ void LivingLifePage::drawChalkBackgroundString( doublePair inPos,
             { inPos.x, firstLineY - i * lineSpacing};
         
         if( !tinyStyle ) {
-            handwritingFont->drawString( line, lineStart, alignLeft );
+            //handwritingFont->drawString( line, lineStart, alignLeft );
+			handwritingFont->drawString( inString, lineStart, alignLeft );
             }
         else {
-            minitech::tinyHandwritingFont->drawString( line, lineStart, alignLeft );
+            //minitech::tinyHandwritingFont->drawString( line, lineStart, alignLeft );
+			minitech::tinyHandwritingFont->drawString( inString, lineStart, alignLeft );
             }
         delete [] line;
         }

@@ -244,7 +244,7 @@ void newbieTips::livingLifeStep(
         if( ourLiveObject->age > 3 && hungerSlipShowing >= 1 ) {
             if( tryToStartSession( 1 ) ) {
                 shouldDisplayMessage = true;
-                messageToDisplay = "YOU ARE GETTING HUNGRY, WALK AROUND AND LOOK FOR FOOD !##REMEMBER TO CHECK FOR YUM IF YOU CAN AFFORD TO.";
+                messageToDisplay = translate("newbieTips1");
             }
             if( isInSession( 1 ) ) {
                 doublePair nearestFood = getClosestFood();
@@ -268,7 +268,7 @@ void newbieTips::livingLifeStep(
                 if( dist > 3.5 ) {
                     if( tryToStartSession( 2 ) ) {
                         shouldDisplayMessage = true;
-                        messageToDisplay = "STAY CLOSE TO MOM, SAY 'F' WHEN YOU'RE HUNGRY.##IF YOU WANT TO BE BORN ELSEWHERE, USE THE   /DIE   COMMAND.";
+                        messageToDisplay = translate("newbieTips2");
                     }
                 } else {
                     tryToEndSession( 2 );
@@ -284,7 +284,7 @@ void newbieTips::livingLifeStep(
         // Tips 3 - Feed and name babies
         if( amFemale && !kidLessonDone && haveKids() && tryToStartSession( 3 ) ) {
             shouldDisplayMessage = true;
-            messageToDisplay = "YOU HAVE A BABY! CLICK TO HOLD AND FEED THEM.##WHEN YOU ARE HOLDING THEM, SAY   YOU ARE [NAME]    TO NAME THEM.";
+            messageToDisplay = translate("newbieTips3");
             kidLessonDone = true;
         } else {
             tryToEndSession( 3 );
@@ -296,7 +296,7 @@ void newbieTips::livingLifeStep(
             if( count > lastNeverHeldKidsDeathCount && count > 1 ) {
                 if( tryToStartSession( 4 ) ) {
                     shouldDisplayMessage = true;
-                    messageToDisplay = "PLEASE DO NOT ABANDON YOUR BABIES.##IF YOU DON'T WANT BABIES, SAY   NO BB   TO BE INFERTILE.";
+                    messageToDisplay = translate("newbieTips4");
                     lastNeverHeldKidsDeathCount = count;
                 }
             } else {
@@ -336,7 +336,7 @@ void newbieTips::livingLifeStep(
                 (justTriedToKill && holdingWeapon) ) &&
                 tryToStartSession( 5 ) ) {
                 shouldDisplayMessage = true;
-                messageToDisplay = "PLEASE BE REMINDED THAT THE SERVER IS MODERATED.##GRIEFING MAY GET YOU BANNED. PLEASE PLAY NICE.";
+                messageToDisplay = translate("newbieTips5");
             } else {
                 tryToEndSession( 5 );
             }
@@ -351,7 +351,7 @@ void newbieTips::livingLifeStep(
         float dist = sqrt(pow(currentPos.y, 2) + pow(currentPos.x, 2));
         if( game_getCurrentTime() - lastSeedLessonTime > 120 && dist > 500 && tryToStartSession( 6 ) ) {
             shouldDisplayMessage = true;
-            messageToDisplay = "IF YOU WANT TO START A CAMP IN THE WILD,##YOU CAN ENTER YOUR OWN  'SPAWN CODE'  IN THE LOGIN PAGE.";
+            messageToDisplay = translate("newbieTips6");
             lastSeedLessonTime = game_getCurrentTime();
         } else {
             tryToEndSession( 6 );
@@ -360,7 +360,7 @@ void newbieTips::livingLifeStep(
         // Tips 7 - No looting
         if( game_getCurrentTime() - lastLootLessonTime > 120 && dist > 500 && tryToStartSession( 7 ) ) {
             shouldDisplayMessage = true;
-            messageToDisplay = "IF YOU FIND SETTLEMENTS SEEMINGLY ABANDONED##PLEASE DO NOT TAKE ANYTHING, OTHERS MAY RETURN TO PLAY LATER.";
+            messageToDisplay = translate("newbieTips7");
             lastLootLessonTime = game_getCurrentTime();
         } else {
             tryToEndSession( 7 );

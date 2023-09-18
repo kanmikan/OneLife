@@ -22,6 +22,8 @@
 
 #include "animationBank.h"
 
+#include "minorGems/game/game.h"
+#include "minorGems/util/TranslationManager.h"
 
 static int mapSize;
 // maps IDs to records
@@ -756,8 +758,18 @@ float initObjectBankStep() {
                 
                 next++;
                             
-                r->description = stringDuplicate( lines[next] );
+                //r->description = stringDuplicate( lines[next] );
                          
+                // automatic translation patch of objects
+                std::string trID = "object_" + std::to_string(r->id);
+                std::string translated = TranslationManager::translate(trID.c_str());
+                
+                if (strcmp(translated.c_str(), trID.c_str()) != 0){
+                    r->description = stringDuplicate( translated.c_str() );
+                } else {
+					r->description = stringDuplicate( lines[next] );
+				}
+                //
 
                 setupObjectWritingStatus( r );
                 

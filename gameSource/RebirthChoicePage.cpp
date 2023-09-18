@@ -37,7 +37,7 @@ RebirthChoicePage::RebirthChoicePage()
           mTutorialButton( mainFont, 0, 64, 
                            translate( "tutorial" ) ),
           mMenuButton( mainFont, 0, -128, 
-                       "BACK" ){
+                       translate("rebirthBack") ){
     
     addComponent( &mBackground );
     
@@ -93,13 +93,13 @@ RebirthChoicePage::RebirthChoicePage()
         }
         
 
-    mQuitButton.setCursorTip( "CLOSE THE GAME" );
-    mRebornButton.setCursorTip( "BE BORN AGAIN WITH THE SAME SPAWN SETTINGS" );
-    mGenesButton.setCursorTip( "CHECK YOUR GENETIC HISTORY" );
+    mQuitButton.setCursorTip( translate("quitTip") );
+    mRebornButton.setCursorTip( translate("rebornButtonTip") );
+    mGenesButton.setCursorTip( translate("geneticButtonTip") );
     
-    mTutorialButton.setCursorTip( "START THE TUTORIAL AGAIN" );
-    mSettingsButton.setCursorTip( "CHANGE GAME SETTINGS" );
-    mMenuButton.setCursorTip( "RETURN TO MAIN MENU" );
+    mTutorialButton.setCursorTip( translate("startTutorialTip") );
+    mSettingsButton.setCursorTip( translate("gameSettingsTip") );
+    mMenuButton.setCursorTip( translate("returnTip") );
     
     }
 

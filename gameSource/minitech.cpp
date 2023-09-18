@@ -586,8 +586,8 @@ void minitech::drawObj(doublePair posCen, int objId, string strDescFirstLine, st
 			firstPart = strDescFirstLine;
 			secondPart = strDescSecondLine;
 		} else {
-			firstPart = "EMPTY";
-			secondPart = "HAND";
+			firstPart = translate("nothingHint");
+			secondPart = translate("bareHandHint");
 		}
 		doublePair firstLine = posCen;
 		int tinyLineHeight = 12;
@@ -1054,7 +1054,7 @@ void minitech::updateDrawTwoTech() {
 		drawRect( posCenter, recWidth/2, recHeight/2);
         maxButtonPos = posCenter;
 		
-		drawStr("[+] CRAFTING GUIDE", posCenter, "tinyHandwritten", false);
+		drawStr(translate("minitechGuide"), posCenter, "tinyHandwritten", false);
 		mouseListener* maxListener = getMouseListenerByArea(
 			&twotechMouseListeners, sub(posLT, screenPos), sub(posBR, screenPos));
 		if (maxListener->mouseHover) {
@@ -1084,7 +1084,7 @@ void minitech::updateDrawTwoTech() {
 		doublePair posCenter = {posLT.x + recWidth / 2, posLT.y - recHeight / 2};
 		setDrawColor( 0, 0, 0, 0.8 );
 		drawRect( posCenter, recWidth/2, recHeight/2);
-		drawStr("NO RECIPES FOUND :)", posCenter, "tinyHandwritten", false);
+		drawStr(translate("minitechNoRecipes"), posCenter, "tinyHandwritten", false);
 		
 	} else {
 		
@@ -1139,9 +1139,9 @@ void minitech::updateDrawTwoTech() {
 					
 					doublePair firstLine = pos;
 					firstLine.y += tinyLineHeight/2;
-					drawStr("NATURALLY", firstLine, "tinyHandwritten", false);
+					drawStr(translate("minitechNaturally"), firstLine, "tinyHandwritten", false);
 					firstLine.y -= tinyLineHeight;
-					drawStr("SPAWN IN:", firstLine, "tinyHandwritten", false);
+					drawStr(translate("minitechSpawnIn"), firstLine, "tinyHandwritten", false);
 
 					pos.x += iconSize;
 					pos.x += iconSize;
@@ -1239,18 +1239,18 @@ void minitech::updateDrawTwoTech() {
 			}
 			if (trans->actor == -1 && trans->autoDecaySeconds != 0) {
 				if ( trans->autoDecaySeconds < 0 ) {
-					drawObj(pos, trans->actor, "WAIT", to_string(- trans->autoDecaySeconds) + " HR");
+					drawObj(pos, trans->actor, translate("minitechWait"), to_string(- trans->autoDecaySeconds) + " HR");
 				} else {
 					int decayTime = trans->autoDecaySeconds;
 					if (decayTime >= 60) {
 						decayTime = int(round(decayTime / 60.0));
-						drawObj(pos, trans->actor, "WAIT", to_string(decayTime) + " MIN");
+						drawObj(pos, trans->actor, translate("minitechWait"), to_string(decayTime) + " MIN");
 					} else {
-						drawObj(pos, trans->actor, "WAIT", to_string(decayTime) + " SEC");
+						drawObj(pos, trans->actor, translate("minitechWait"), to_string(decayTime) + " SEC");
 					}
 				}
 			} else if (trans->actor == 0 && trans->contTransFlag != 0) {                
-                drawObj(pos, trans->actor, "ANY", "ITEM");
+                drawObj(pos, trans->actor, translate("minitechAny"), translate("minitechItem"));
 			} else {
 				drawObj(pos, trans->actor);
 			}
@@ -1275,28 +1275,32 @@ void minitech::updateDrawTwoTech() {
                 string thirdLineWords = "";
                 
                 if( inOrOutContainmentTrans == 0 ) {
-                    firstLineWords = "PUT";
-                    secondLineWords = "INTO";
+                    firstLineWords = translate("minitechPut");
+                    secondLineWords = translate("minitechInto");
                 } else if( inOrOutContainmentTrans == 1 ) {
-                    firstLineWords = "TAKE";
-                    secondLineWords = "OUT";                    
+                    firstLineWords = translate("minitechTake");
+                    secondLineWords = translate("minitechOut");                  
                 }
                 
                 if( trans->contTransFlag == 1 ) {
-                    thirdLineWords = "(FIRST)";
+                    thirdLineWords = translate("minitechFirst");
                 } else if ( trans->contTransFlag == 2 ) {
-                    thirdLineWords = "(LAST)";
+                    thirdLineWords = translate("minitechLast");
                 } else if ( trans->contTransFlag == 3 ) {
                     thirdLineWords = "";
                 } else if ( trans->contTransFlag == 4 ) {
                     if( inOrOutContainmentTrans == 0 ) {
-                        firstLineWords = "PUT/";
-                        secondLineWords = "SWAP";
-                        thirdLineWords = "INTO";
+                        firstLineWords = translate("minitechPut");
+                        firstLineWords += "/";
+                        
+                        secondLineWords = translate("minitechSwap");
+                        thirdLineWords = translate("minitechInto");
                     } else if( inOrOutContainmentTrans == 1 ) {
-                        firstLineWords = "TAKE/";
-                        secondLineWords = "SWAP";
-                        thirdLineWords = "OUT";
+                        firstLineWords = translate("minitechTake");
+                        firstLineWords += "/";
+                        
+                        secondLineWords = translate("minitechSwap");
+                        thirdLineWords = translate("minitechOut");
                     }
                 }
                 
@@ -1330,12 +1334,12 @@ void minitech::updateDrawTwoTech() {
 			}
 			if (trans->target == -1 && trans->contTransFlag == 0) {
 				if (trans->newTarget == 0) {
-					drawStr("MOUTH", pos, "tinyHandwritten", false);
+					drawStr(translate("eatHint"), pos, "tinyHandwritten", false);
 				} else {
-					drawObj(pos, trans->target, "EMPTY", "GROUND");
+					drawObj(pos, trans->target, translate("nothingHint"), translate("bareGroundHint"));
 				}
 			} else if (trans->target == -1 && trans->contTransFlag != 0) {
-                drawObj(pos, trans->target, "ANY", "ITEM");
+                drawObj(pos, trans->target, translate("minitechAny"), translate("minitechItem"));
 			} else {
 				drawObj(pos, trans->target);
 			}
@@ -1375,26 +1379,26 @@ void minitech::updateDrawTwoTech() {
 			}
 			if (trans->newActor == 0 && trans->contTransFlag != 0) {
                 if( trans->actor == 0 && trans->newActor == 0 ) {
-                    drawObj(pos, trans->newActor, "ANY", "ITEM");
+                    drawObj(pos, trans->newActor, translate("minitechAny"), translate("minitechItem"));
                 } else {
                     //This should not happen, not currently implemented.
                     // drawStr("DESPAWNS", pos, "tinyHandwritten", false);
                     
                     //Draw actor instead...
-                    drawObj(pos, trans->actor, "ANY", "ITEM");
+                    drawObj(pos, trans->actor, translate("minitechAny"), translate("minitechItem"));
                 }
 			} else if (trans->actor > 0 && trans->target > 0 && trans->newActor == 0) {
 				drawObj(pos, trans->newActor);
 			} else if (trans->actor == -1 && trans->autoDecaySeconds != 0 && trans->newActor == 0) {
 				if (trans->move != 0) {
-					drawStr("MOVING...", pos, "tinyHandwritten", false);
+					drawStr(translate("minitechMoving"), pos, "tinyHandwritten", false);
 				} else if (trans->newTarget == 0) {
-					drawStr("DESPAWNS", pos, "tinyHandwritten", false);
+					drawStr(translate("minitechDespawns"), pos, "tinyHandwritten", false);
 				} else {
-					drawObj(pos, trans->newActor, "TURNING", "INTO...");
+					drawObj(pos, trans->newActor, translate("minitechTurning"), translate("minitechIntoPeriod"));
 				}
 			} else if (trans->newActor == 0) {
-				drawObj(pos, trans->newActor, "EMPTY", "GROUND");
+				drawObj(pos, trans->newActor, translate("nothingHint"), translate("bareGroundHint"));
 			} else {
 				drawObj(pos, trans->newActor);
 			}
@@ -1421,7 +1425,7 @@ void minitech::updateDrawTwoTech() {
                 if( trans->contTransFlag == 0 || inOrOutContainmentTrans ) {
                     drawStr("+", pos, "handwritten", false);
                 } else {
-                    drawStr("IN", pos, "tinyHandwritten", false);
+                    drawStr(translate("minitechIn"), pos, "tinyHandwritten", false);
                 }
 			}
 			
@@ -1438,13 +1442,13 @@ void minitech::updateDrawTwoTech() {
 			}
 			if (trans->newTarget == 0 && trans->contTransFlag != 0) {
                 if( trans->target == 0 && trans->newTarget == 0 ) {
-                    drawObj(pos, trans->newTarget, "ANY", "ITEM");
+                    drawObj(pos, trans->newTarget, translate("minitechAny"), translate("minitechItem"));
                 } else {
                     //This should not happen, not currently implemented.
                     // drawStr("DESPAWNS", pos, "tinyHandwritten", false);
                     
                     //Draw target instead...
-                    drawObj(pos, trans->target, "ANY", "ITEM");
+                    drawObj(pos, trans->target, translate("minitechAny"), translate("minitechItem"));
                 }
 			} else if (trans->actor == -1 && trans->autoDecaySeconds != 0 && trans->newTarget == 0) {
 				//Despawn transitions, "DESPAWNS" is written in the newActor slot, keep this slot empty
@@ -1452,7 +1456,7 @@ void minitech::updateDrawTwoTech() {
 				//Eating transitions
 				//Other generic use transitions in which target has no food value should be filtered out in getUsesTrans and getProdTrans
 			} else {
-				drawObj(pos, trans->newTarget, "EMPTY", "GROUND");
+				drawObj(pos, trans->newTarget, translate("nothingHint"), translate("bareGroundHint"));
 			}
 			if (trans->targetChangeChance != 1.0) {
 				string secondLine = to_string( trans->targetChangeChance * 100 );
@@ -1564,8 +1568,8 @@ void minitech::updateDrawTwoTech() {
 	setDrawColor( 0, 0, 0, 0.8 );
 	drawRect( headerCen, headerWidth/2, headerHeight/2);
 
-	string useStr = "HOW DO I USE:";
-	string makeStr = "HOW DO I MAKE:";
+	string useStr = translate("minitechUSE");
+	string makeStr = translate("minitechMAKE");
 	float textWidth = tinyHandwritingFont->measureString( makeStr.c_str() );
 	float textXOffset = -iconSize/2 - centerXSeparation/2;
 	doublePair textCen = {headerCen.x + textXOffset, headerCen.y + barOffsetY};
@@ -1620,13 +1624,13 @@ void minitech::updateDrawTwoTech() {
 		string searchStr;
 		if (lastHintStr != "") {
             if (lastHintSearchNoResults) {
-                searchStr = "SEARCHING: " + lastHintStr + " (NO RESULTS)";
+                searchStr = translate("minitechSearching") + lastHintStr + translate("minitechNoResult");
             } else {
-                searchStr = "SEARCHING: " + lastHintStr + " (SAY '/' TO CLEAR)";
+                searchStr = translate("minitechSearching") + lastHintStr + translate("minitechResult");
             }
 		} else if (ourLiveObject->holdingID != 0 && ourLiveObject->holdingID == currentHintObjId) {
 			string objName = livingLifePage->minitechGetDisplayObjectDescription(currentHintObjId);
-			searchStr = "HOLDING: " + objName;
+			searchStr = translate("minitechHolding") + objName;
 		}
 		
 		doublePair barCen = {headerLT.x + barWidth / 2, headerLT.y - barHeight / 2 - paddingY/2};
