@@ -685,7 +685,7 @@ void SettingsPage::draw( doublePair inViewCenter,
             pos.x -= 30;
             pos.y -= 2;
             
-            mainFont->drawString( "DISABLE FLASH EFFECT", pos, alignRight );
+            mainFont->drawString( translate("disableFlashEffect"), pos, alignRight );
             }
         
 

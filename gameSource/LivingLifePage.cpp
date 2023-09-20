@@ -3877,11 +3877,11 @@ void LivingLifePage::drawChalkBackgroundString( doublePair inPos,
         
         if( !tinyStyle ) {
             //handwritingFont->drawString( line, lineStart, alignLeft );
-			handwritingFont->drawString( inString, lineStart, alignLeft );
+            handwritingFont->drawString( inString, lineStart, alignLeft );
             }
         else {
             //minitech::tinyHandwritingFont->drawString( line, lineStart, alignLeft );
-			minitech::tinyHandwritingFont->drawString( inString, lineStart, alignLeft );
+            minitech::tinyHandwritingFont->drawString( inString, lineStart, alignLeft );
             }
         delete [] line;
         }

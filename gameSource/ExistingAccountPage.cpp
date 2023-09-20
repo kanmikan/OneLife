@@ -524,7 +524,7 @@ bool disableCredentialLocks = false;
 void ExistingAccountPage::updatefieldsAndLockButtons() {
     
     mEmailLockButton.setLabelText( emailFieldLockedMode == 2 ? "OK" : "!" );
-    mEmailLockButton.setCursorTip( emailFieldLockedMode == 2 ? "LOCK FIELD" : "UNLOCK FIELD" );
+    mEmailLockButton.setCursorTip( emailFieldLockedMode == 2 ? translate("lockFieldTip") : translate("unlockFieldTip") );
     mEmailLockButton.setPosition( 
         mEmailField.getRightEdgeX() + mEmailLockButton.getWidth() / 2 + 4, 
         mEmailField.getPosition().y );
@@ -551,7 +551,7 @@ void ExistingAccountPage::updatefieldsAndLockButtons() {
     mAtSignButton.setVisible( mEmailField.isVisible() && isClipboardSupported() && (emailFieldLockedMode == 2 || disableCredentialLocks) && useSteamUpdate );
     
     mKeyLockButton.setLabelText( keyFieldLockedMode == 2 ? "OK" : "!" );
-    mKeyLockButton.setCursorTip( keyFieldLockedMode == 2 ? "LOCK FIELD" : "UNLOCK FIELD" );
+    mKeyLockButton.setCursorTip( keyFieldLockedMode == 2 ? translate("lockFieldTip") : translate("unlockFieldTip") );
     mKeyLockButton.setPosition( 
         mKeyField.getRightEdgeX() + mKeyLockButton.getWidth() / 2 + 4, 
         mKeyField.getPosition().y );
@@ -569,7 +569,7 @@ void ExistingAccountPage::updatefieldsAndLockButtons() {
     mPasteButton.setVisible( mKeyField.isVisible() && isClipboardSupported() && (keyFieldLockedMode == 2 || disableCredentialLocks) );
     
     mSpawnSeedLockButton.setLabelText( seedFieldLockedMode == 2 ? "OK" : "!" );
-    mSpawnSeedLockButton.setCursorTip( seedFieldLockedMode == 2 ? "LOCK FIELD" : "UNLOCK FIELD" );
+    mSpawnSeedLockButton.setCursorTip( seedFieldLockedMode == 2 ? translate("lockFieldTip") : translate("unlockFieldTip") );
     mSpawnSeedLockButton.setPosition( 
         mSpawnSeed.getRightEdgeX() + mSpawnSeedLockButton.getWidth() / 2 + 4, 
         mSpawnSeed.getPosition().y );

@@ -60,7 +60,7 @@ CustomRandomSource randSource( 34957197 );
 #include "minorGems/game/diffBundle/client/diffBundleClient.h"
 
 #include "minorGems/graphics/RGBAImage.h"
-
+#include "minorGems/util/TranslationManager.h"
 
 
 
@@ -1020,7 +1020,9 @@ static void drawPauseScreen() {
         
         File languagesDir( NULL, "languages" );
         if ( languagesDir.exists() && languagesDir.isDirectory() ) {
-            File *helpFile = languagesDir.getChildFile( "help_English.txt" );
+            //File *helpFile = languagesDir.getChildFile( "help_English.txt" );
+            std::string filename = "help_" + TranslationManager::getLanguage() + ".txt";
+            File *helpFile = languagesDir.getChildFile( filename.c_str() );
             char *helpFileContents = helpFile->readFileContents();
             
             if( helpFileContents != NULL ) {
